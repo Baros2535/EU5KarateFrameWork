@@ -85,7 +85,6 @@ Scenario: query params
     
     * print response.content
 
-  @wip
   Scenario: query params
     Given url spartanBaseURL
     And path "/spartans/search"
@@ -102,4 +101,16 @@ Scenario: query params
     * print  response.content[0].gender
 
     * print "Gender " , each response.content
-    
+
+
+
+  Scenario: hr regions example
+    Given url HRBaseURL
+    And path 'regions'
+    When method get
+    Then status 200
+   # * print response
+
+    And match response.limit == 25
+
+ 
