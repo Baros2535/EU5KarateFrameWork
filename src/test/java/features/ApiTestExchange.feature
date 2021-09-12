@@ -17,7 +17,7 @@ Feature: api test
     #how to verify header is there or not
     And match header Date == '#present'
 
-  @wip
+
 Scenario: json body verification
     Given url BaseURL + '/2010-01-12?access_key=466c5621538288db882a6d1091d4f0b7'
     When method get
