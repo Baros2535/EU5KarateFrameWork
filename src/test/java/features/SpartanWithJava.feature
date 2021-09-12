@@ -52,7 +52,6 @@ Feature: Karate Java Integration
       And match response.success == "A Spartan is Born!"
       And match response.data.name == newSpartan.name
 
-  @wip
   Scenario: Create a new spartan with random data and delete
       #point to class and create an object
     * def randomSpartan = Java.type("utilities.SpartanDataGenerator")
