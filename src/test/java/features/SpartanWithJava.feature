@@ -5,7 +5,7 @@ Feature: Karate Java Integration
     * def HRBaseURL = 'http://54.237.100.89:1000/ords/hr'
     * def spartanBaseURL = 'http://54.237.100.89:8000/api'
 
-  @wip
+
     Scenario: Get a spartan
       Given url spartanBaseURL
       And path "spartans"
@@ -13,7 +13,7 @@ Feature: Karate Java Integration
       When method get
       Then status 200
 
-  @wip
+
   Scenario: Get a spartan
     Given url spartanBaseURL
     And path "spartans"
@@ -32,7 +32,7 @@ Feature: Karate Java Integration
     Then status 201
     * print response
 
-    @wip
+
     Scenario: Create a new spartan with random data
       #point to class and create an object
   * def randomSpartan = Java.type("utilities.SpartanDataGenerator")
@@ -49,4 +49,33 @@ Feature: Karate Java Integration
       When method post
       Then status 201
       * print response
+      And match response.success == "A Spartan is Born!"
+      And match response.data.name == newSpartan.name
+
+  @wip
+  Scenario: Create a new spartan with random data and delete
+      #point to class and create an object
+    * def randomSpartan = Java.type("utilities.SpartanDataGenerator")
+      # call the method by object
+    * def newSpartan = randomSpartan.createSpartan()
+      # print
+    * print newSpartan
+
+    Given url spartanBaseURL
+    And path "spartans"
+    And header Accept = "application/json"
+    And header Content-Type = "application/json"
+    And request newSpartan
+    When method post
+    Then status 201
+    * print response
+    And match response.success == "A Spartan is Born!"
+    And match response.data.name == newSpartan.name
+    And def idDelete = response.data.id
+    Given url spartanBaseURL
+    And path "spartans"
+    And path idDelete
+    And method delete
+    Then status 204
+
 
