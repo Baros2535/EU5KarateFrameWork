@@ -50,7 +50,7 @@ Feature:
     * match employee.salary == '#number'
     * match employee == '#object'
 
-  @wip
+
   Scenario: fuzzy matching json
     * def employees =
 
