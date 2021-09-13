@@ -9,5 +9,12 @@ Feature: Bookit Api Tests
   @wip
   Scenario: get user information
     Given url BookBaseURL
+    And path "/api/students/me"
+    And header Authorization = "Bearer " + accessToken
+    And header Accept = "application/json"
+    And method get
+    Then status 200
+    * print response
+    
 
 
