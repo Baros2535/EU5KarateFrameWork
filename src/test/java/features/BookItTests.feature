@@ -6,7 +6,6 @@ Feature: Bookit Api Tests
     * def accessToken = authFeature.token
     * print "Token From Backround " , accessToken
 
-  @wip
   Scenario: get user information
     Given url BookBaseURL
     And path "/api/students/me"
@@ -15,6 +14,25 @@ Feature: Bookit Api Tests
     And method get
     Then status 200
     * print response
-    
+    And match response ==
+  """
+  {
+  "firstName": "Teri",
+  "lastName": "Mapam",
+  "role": "student-team-leader",
+  "id": 130
+}
+    """
 
 
+  @wip
+  
+  Scenario: get campus information
+    Given url BookBaseURL
+    And path "/api/campuses"
+    And header Authorization = "Bearer " + accessToken
+    And header Accept = "application/json"
+    And method get
+    Then status 200
+    And print response
+    And match response ==  read("classpath:data/campuses.json")
