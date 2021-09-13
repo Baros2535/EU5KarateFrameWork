@@ -25,7 +25,6 @@ Feature: Bookit Api Tests
     """
 
 
-  @wip
   
   Scenario: get campus information
     Given url BookBaseURL
